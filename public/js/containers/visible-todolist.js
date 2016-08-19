@@ -7,6 +7,7 @@ class VisibleTodoList extends React.Component {
         const todos = this.props.todos.map((todo, index) => {
             return <div key={index}>
                 {todo.text}
+                <button onClick={() => {this.props.onDelete(todo.id)}}>X</button>
             </div>
         })
         return <div>
@@ -16,14 +17,26 @@ class VisibleTodoList extends React.Component {
 }
 
 VisibleTodoList.propTypes = {
-    todos: PropTypes.array.isRequired
+    todos: PropTypes.array.isRequired,
+    onDelete:PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state)=> {
-    "use strict";
     return {
         todos: state.todos
     }
 }
 
-export default connect(mapStateToProps)(VisibleTodoList);
+const mapDispatchToProps = (dispatch) => {
+    "use strict";
+    return {
+        onDelete: (id) => {
+            dispatch({
+                type:'DELETE',
+                id
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VisibleTodoList);
