@@ -1,4 +1,4 @@
-export default function reducer(state,action) {
+export default function reducer(state = {todos: []}, action) {
     "use strict";
-    console.log(action);
+    return state;
 }
