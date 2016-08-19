@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 class VisibleTodoList extends React.Component {
 
     render() {
-        const todos = this.props.todos.map(todo => {
-            return <div>
+        const todos = this.props.todos.map((todo, index) => {
+            return <div key={index}>
                 {todo.text}
             </div>
         })
